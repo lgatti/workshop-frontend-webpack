@@ -1,37 +1,18 @@
+const merge = require("webpack-merge");
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
-  entry: [
-    './src/scripts/main.js',
-    './src/styles/main.scss'
-  ],
+const commons = require('./webpack.common');
+
+const dev = {
   output: {
-    filename: 'js/[name].bundle.js',
-    path: __dirname + '/dist'
-  },
-  module: {
-    rules: [
-      { // sass / scss loader for webpack
-        test: /\.(sass|scss)$/,
-       use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
-      }
-    ]
+    path: __dirname + '/build'
   },
   plugins: [
-    new CleanWebpackPlugin('dist'),
-    new ExtractTextPlugin({ // define where to save the file
-      filename: 'styles/[name].bundle.css',
-      allChunks: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      filename: 'index.html',
-      minify: {
-        collapseWhitespace: true
-      }
-    })
+    new CleanWebpackPlugin('build'),
   ],
+};
 
-}
+module.exports = merge.smart(commons, dev);
