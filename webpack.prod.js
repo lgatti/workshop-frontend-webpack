@@ -6,9 +6,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const imageminJpegtran = require('imagemin-jpegtran');
+const imageminPngquant = require('imagemin-pngquant');
 const { imageminLoader, ImageminWebpackPlugin } = require("imagemin-webpack");
 
-const imageMinPlugins = [imageminJpegtran({arithmetic: true})];
+const imageMinPlugins = [imageminJpegtran({arithmetic: true}), imageminPngquant({ quality: 50 }),];
 
 const commons = require('./webpack.common');
 
@@ -19,7 +20,7 @@ const dev = {
   module: {
     rules: [
       {
-        test: /\.(jpe?g)$/i,
+        test: /\.(jpe?g|png)$/i,
         use: [
           {
             loader: "file-loader"
