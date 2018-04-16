@@ -4,31 +4,40 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    'main': ['./src/scripts/main.js', './src/styles/main.scss'], 
+    'main': ['./src/scripts/main.js'], 
     
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.[hash].js',
   },
   module: {
     rules: [
       { // sass / scss loader for webpack
         test: /\.(sass|scss)$/,
-       use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}  
+          }
+        ]
       }
     ]
   },
   plugins: [
     new ExtractTextPlugin({ // define where to save the file
-      filename: '[name].bundle.css',
-      allChunks: true,
+      filename: '[name].bundle.[hash].css',
+      allChunks: false,
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',
-      minify: {
-        collapseWhitespace: true
-      }
+      // minify: {
+      //   collapseWhitespace: true
+      // }
     })
   ],
 
