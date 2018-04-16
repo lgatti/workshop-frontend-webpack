@@ -10,6 +10,19 @@ const dev = {
   output: {
     path: __dirname + '/build'
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}  
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new CleanWebpackPlugin('build'),
   ],
