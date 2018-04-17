@@ -8,6 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const imageminJpegtran = require('imagemin-jpegtran');
 const imageminPngquant = require('imagemin-pngquant');
 const { imageminLoader, ImageminWebpackPlugin } = require("imagemin-webpack");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const imageMinPlugins = [imageminJpegtran({arithmetic: true}), imageminPngquant({ quality: 50 }),];
 
@@ -43,7 +44,8 @@ const dev = {
       imageminOptions: {
         plugins: imageMinPlugins
       }
-    })
+    }),
+    new CompressionPlugin(),
   ],
 };
 
