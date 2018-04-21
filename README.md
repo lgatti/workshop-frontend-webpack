@@ -10,3 +10,9 @@ _ Run npm install
 _ npm run start
 _ npm run build
 _ npm run dist
+
+## Presentation:
+See PDF: Basics frontend performance.pdf
+
+## Solution
+You can find the final solution in branch: wip
