@@ -40,11 +40,6 @@ const dev = {
     new CleanWebpackPlugin('dist'),
     new OptimizeCssAssetsPlugin(),
     new UglifyJsPlugin(),
-    new ImageminWebpackPlugin({
-      imageminOptions: {
-        plugins: imageMinPlugins
-      }
-    }),
     new CompressionPlugin(),
   ],
 };
